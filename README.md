@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/c517ef6e-6d39-4ee4-9cda-4b605a6849a0)# EJOR-DSRCMPSP User Guides (Version 1.0)
+# EJOR-DSRCMPSP User Guides (Version 1.0)
 ## Citing This Repository
 If you use any materials, data, or software from this repository in your research or project, please cite the relevant publications. Citing this work properly helps to acknowledge the authors' contributions. You can find the recommended citations below:
 
