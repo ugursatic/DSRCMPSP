@@ -29,7 +29,7 @@ Problem Limitations:
 
 ## Installation
 
-The source codes of EJOR-DSRCMPSP are in the src folder.  Download the source codes and open the main file with 1.60 version of Julia.  
+The source codes of EJOR-DSRCMPSP are in the "Algorithm Codes" folder.  Download the source codes and open the main file with 1.60 version of Julia.  
 "EJOR paper Main code" is the main file. 
  
 ## Prerequisites
