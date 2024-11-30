@@ -15,8 +15,8 @@ These solution algorithms are:
   * an optimal reactive baseline algorithm (ORBA), both GA and ORBA generate a schedule to maximise the total profit of ongoing projects,
   * a rule-based algorithm which prioritises the processing of tasks with the highest processing durations.
 
-Problem Limitations:
- * All projects in one problem should have the same task number. If different task-numbered projects are considered in one problem, dummy tasks must be added to lower-numbered projects. A dummy task is a task that does not have any duration and resource consumption. 
+Test Problems:
+ * The test problems that were used in Benchmark at Satic (2024) are available in the Data folder. 
 
 ## Table of Contents
 1. [Introduction](#introduction)
