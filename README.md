@@ -1,18 +1,22 @@
-# ADPforDSRCMPSP
-# EJOR-DSRCMPSP User Guides (Version 1.0)
+![image](https://github.com/user-attachments/assets/c517ef6e-6d39-4ee4-9cda-4b605a6849a0)# EJOR-DSRCMPSP User Guides (Version 1.0)
 ## Citing This Repository
 If you use any materials, data, or software from this repository in your research or project, please cite the relevant publications. Citing this work properly helps to acknowledge the authors' contributions. You can find the recommended citations below:
 
 * Satic, U., Jacko, P. and Kirkbride, C. (2024) ‘A simulation-based approximate dynamic programming approach to dynamic and stochastic resource-constrained multi-project scheduling problem’, _European Journal of Operational Research_, 315(2), pp.  454-469. doi: 10.1016/j.ejor.2023.10.046.
 
 ## Introduction
-EJOR-DSRCMPSP is a solver for dynamic and stochastic resource-constrained multi-project scheduling problems where projects generate rewards at their completion, completions later than a due date cause tardiness costs, task duration is uncertain, and new projects arrive randomly during the ongoing project execution both of which disturb the existing project scheduling plan. EJOR-DSRCMPSP contains the solution algorithms and benchmark problem information used in Satic (2024). These solution algorithms are: 
+EJOR-DSRCMPSP is a solver for dynamic and stochastic resource-constrained multi-project scheduling problems where projects generate rewards at their completion, completions later than a due date cause tardiness costs, task duration is uncertain, and new projects arrive randomly during the ongoing project execution both of which disturb the existing project scheduling plan. EJOR-DSRCMPSP contains the solution algorithms and benchmark problem information used in Satic (2024). 
+
+These solution algorithms are: 
 
   * an approximate dynamic programming (ADP),
   * a dynamic programming algorithm (DP), Both ADP and DP algorithms aim to maximise the time-average profit,
   * a genetic algorithm (GA),
   * an optimal reactive baseline algorithm (ORBA), both GA and ORBA generate a schedule to maximise the total profit of ongoing projects,
   * a rule-based algorithm which prioritises the processing of tasks with the highest processing durations.
+
+Problem Limitations:
+ * All projects in one problem should have the same task number. If different task-numbered projects are considered in one problem, dummy tasks must be added to lower-numbered projects. A dummy task is a task that does not have any duration and resource consumption. 
 
 ## Table of Contents
 1. [Introduction](#introduction)
@@ -25,45 +29,60 @@ EJOR-DSRCMPSP is a solver for dynamic and stochastic resource-constrained multi-
 
 ## Installation
 
-The source codes of EJOR-DSRCMPSP are in the src folder.  Download the source code and open it with 1.60 version of Julia.  
+The source codes of EJOR-DSRCMPSP are in the src folder.  Download the source codes and open the main file with 1.60 version of Julia.  
 "EJOR paper Main code" is the main file. 
  
 ## Prerequisites
- - In line 9, remove "#". Then select line 9 and run it to install Combinatorics and StatsBase packages. After package installation is completed type a "#" to start of line 9.
-  - In line 15, remove "#". Then select line 15 and run it to install JLD2 and FileIO packages. After package installation is completed type a "#" to start of line 15.
-  - In line 19, remove "#". Then select line 19 and run it to install those packages. After package installation is completed type a "#" to start of line 10.
+ - In line 1, remove "#". Then select line 1 and run it to install some packages. After package installation is completed type a "#" to start of line 1.
+ - In line 2, remove "#". Then select line 2 and run it to install Gtk package. After package installation is completed type a "#" to start of line 2.
 These steps will not be required in future usage.
 
 ## Steps
-1) Select and run the lines from 1-23 to include dependencies. 
-2) Select and run the lines from 108 to 2134 to register the required functions.
+1) Select and run the lines from 3-8 to include dependencies. 
+2) Select and run the lines from 27 to 765 to register the required functions.
+3) Type the file location of the Julia file of the required solvers. Then remove "#" from the start of their line.
+4) Type the file location of the Julia file of the required problem readers. Then remove "#" from the start of their line.
+5) Select and run the lines from 10 to 15 to register the required solvers and problem readers.
+6) Create a folder in C named JuliaOutput
    
 ## Usage
 
 ### 1) Running the Code :
-  The algorithm can be run by selecting and running the lines from 24 to 104 in the default settings. How to change the default is explained in the following subsections. 
-
-
+  The algorithm can be run by selecting and running the lines from 18 to 24 in the default settings. How to change the default is explained in the following subsections. 
+  
 ### 2) Obtaining Results : 
-The code writes differences between maximum and minimum value increases of each iteration till the difference is smaller than the stopping criteria to the REPL console. The code also writes the running time to the REPL console when it completes. 
- 
-[Diffirences between maximum and minimum value increases] = [Maximum value increase]-[Minimum value increase]. 
-
-In our paper, we used the average of final [Maximum value increase] and [Minimum value increase] as the long-term average profit per unit time.   
+After completion, the algorithm generates two result files in C:\\JuliaOutput named Test model ___ Results.csv and Test model ___ Rvalues.csv
+The results file shows the following outputs:
+ * Column A: tested project arrival rates
+ * Columns B to E: Mean profit of tested algorithms.
+ * Columns F to I: Standard deviation of the profit of tested algorithms.
+ * Columns J to N: Run time of simulations for each algorithm.
+ * Column A: Training time of ADP method.
+ * Columns O to R: Number of arrival of projects in that test.
+ * Columns S to V: Number of project completions (including late completions)
+ * Columns W to Z: Number of late project completions
+ * Column AA: Number of Genetic algorithms is called during simulation.
+ * Column AB: Number of Genetic algorithms required retraining 
+ * Columns AC to AF: Undiscounted Mean profit of tested algorithms.
+ * Columns AG and AH: Some test statistics
+ * Columns AI to AL: average free resource availability.
+ * Column AA: Number of Genetic algorithms is called during simulation.
 
 ### 3) Problem Selection :
 **Default problem:** The two projects with two tasks each problem is assigned as the default problem.
 
-**Other pre-defined problems:**  To be able to run a test with other pre-defined problems, first, put one "#" sign to each line from 51 to 55. 
+**Other pre-defined problems:**  To be able to run a test with other pre-defined problems are available in GenerateInitials function.  
 
-Then remove one "#" sign from the start of lines :
-* from 44 to 48 for The three projects with two tasks each problem,
-* from 37 to 41 for The two projects with three tasks each problem, 
-* from 31 to 35 for The four projects with two tasks for each problem.
+Add  "#=" to current problem lines 507 and 513
+
+Then remove one "#=" sign from the start of lines :
+* from 498 and 504 for The three projects with two tasks each problem,
+* from 488 to 494 for The two projects with three tasks each problem, 
+* from 479 to 485 for The four projects with two tasks for each problem.
 
 Note: only one problem can be used at once.  
 
- **Creating custom problems:** Due to the computational limits of dynamic programming, most problems might not work. Thus we do not suggest changing the test problem. The setting of the default problem can be changed for customisation. 
+ **Loading bigger problems:** Due to the computational limits of dynamic programming, most problems might not work. Thus we do not suggest changing the test problem. The setting of the default problem can be changed for customisation. 
  
 MPTD =Int8[X Y;Z T], is used for (expected) task durations.
 
